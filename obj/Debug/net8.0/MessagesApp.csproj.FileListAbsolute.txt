@@ -32,3 +32,5 @@ D:\Project\NET\MessagesApp\obj\Debug\net8.0\refint\MessagesApp.dll
 D:\Project\NET\MessagesApp\obj\Debug\net8.0\MessagesApp.pdb
 D:\Project\NET\MessagesApp\obj\Debug\net8.0\MessagesApp.genruntimeconfig.cache
 D:\Project\NET\MessagesApp\obj\Debug\net8.0\ref\MessagesApp.dll
+D:\Project\NET\MessagesApp\obj\Debug\net8.0\MessagesApp.sourcelink.json
+D:\Project\NET\MessagesApp\bin\Debug\net8.0\messages.json

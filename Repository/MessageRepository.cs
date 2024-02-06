@@ -17,8 +17,12 @@ public class MessageRepository
         _messages.Insert(0, message);
         SaveMessages(FilePath, _messages);
     }
+    public void UpdateMessage(Message message)
+    {
+        SaveMessages(FilePath, _messages);
+    }
 
-    public Message? GetMessageById(int id)
+    public Message? GetMessageById(string id)
     {
         return _messages.FirstOrDefault(m => m.Id == id);
     }
@@ -35,12 +39,13 @@ public class MessageRepository
         var json = JsonSerializer.Serialize(messages, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(filePath, json);
     }
-    public bool DeleteMessage(int id)
+    public bool DeleteMessage(string id)
     {
         var message = _messages.FirstOrDefault(m => m.Id == id);
         if (message != null)
         {
             _messages.Remove(message);
+            SaveMessages(FilePath, _messages);
             return true; 
         }
         return false;

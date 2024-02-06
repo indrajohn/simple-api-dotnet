@@ -28,12 +28,8 @@ namespace MessagesApp.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetMessageById(int id)
+        public IActionResult GetMessageById(string id)
         {
-            if (id <= 0)
-            {
-                return ResponseUtil.ErrorResponse(ErrorMessages.InvalidIdMustPositive);
-            }
 
             var message = _repository.GetMessageById(id);
             if (message == null)
@@ -45,15 +41,17 @@ namespace MessagesApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMessage([FromBody] Message message)
+        public IActionResult AddMessage(Message message)
         {
+            Guid newUuid = Guid.NewGuid();
+            string uuidString = newUuid.ToString();
+            _logger.LogInformation("UUID {uuidString}", uuidString);
+
+            message.Id = uuidString;
+
             if (!ModelState.IsValid)
             {
                 return ResponseUtil.ErrorResponse(ErrorMessages.InvalidMessageData);
-            }
-            if (message.Id <= 0)
-            {
-                return ResponseUtil.ErrorResponse(ErrorMessages.InvalidIdMustPositive);
             }
 
             var existingMessage = _repository.GetMessageById(message.Id);
@@ -66,13 +64,22 @@ namespace MessagesApp.Controllers
             return ResponseUtil.SuccessResponse(message, SuccessMessages.MessageAddedSuccessfully);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteMessage(int id)
+        [HttpPut("{id}")]
+        public IActionResult UpdateMessage(string id, [FromBody] Message updatedMessage)
         {
-            if (id <= 0)
+            var existingMessage = _repository.GetMessageById(id);
+            if (existingMessage == null)
             {
-                return ResponseUtil.ErrorResponse(ErrorMessages.InvalidIdMustPositive);
+                return ResponseUtil.ErrorResponse(ErrorMessages.NoMessageWithId(id), StatusCodes.Status404NotFound);
             }
+            existingMessage.Text = updatedMessage.Text; 
+            _repository.UpdateMessage(existingMessage); 
+            return ResponseUtil.SuccessResponse(existingMessage, SuccessMessages.MessageUpdatedSuccessfully);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteMessage(string id)
+        {
 
             bool deleted = _repository.DeleteMessage(id);
             if (!deleted)

@@ -10,11 +10,11 @@ namespace MessagesApp.Utils
         public const string InvalidIdMustPositive = "Invalid ID. Please provide a valid positive integer ID";
         public const string NoMessagesFound = "No messages found.";
         public const string InvalidMessageData = "Invalid message data. Please check your input and try again.";
-        public static string MessageWithIdAlreadyExists(int id)
+        public static string MessageWithIdAlreadyExists(string id)
         {
             return $"A message with id {id} already exists.";
         }
-         public static string NoMessageWithId(int id)
+         public static string NoMessageWithId(string id)
         {
             return $"No message found with id {id}.";
         }
@@ -25,8 +25,9 @@ namespace MessagesApp.Utils
         public const string MessageAddedSuccessfully = "Message added successfully.";
         public const string MessagesRetrievedSuccessfully = "Messages retrieved successfully.";
         public const string  MessageDeletedSuccessfully = "Message deleted successfully.";
+        public const string  MessageUpdatedSuccessfully = "Message updated successfully.";
 
-        public static string MessagesWithIdRetrievedSuccessfully(int id)
+        public static string MessagesWithIdRetrievedSuccessfully(string id)
         {
             return $"Messages with id {id} retrieved successfully";
         }
