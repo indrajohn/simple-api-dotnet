@@ -17,7 +17,7 @@ Ensure you have the [.NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/
 Clone the repository to your local machine:
 
 ```bash
-git clone https://yourrepositoryurl.git
+git clone https://github.com/indrajohn/simple-api-dotnet.git
 ```
 Navigate to the project directory:
 
