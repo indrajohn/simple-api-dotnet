@@ -81,7 +81,7 @@ This API project includes Swagger documentation, which allows you to explore and
 
 Ensure you have the .NET 5.0 SDK or later installed on your machine. Clone the repository and navigate to the project directory. Build and run the server using the following commands:
 ```bash
-git clone https://yourrepositoryurl.git
+git clone https://github.com/indrajohn/simple-api-dotnet.git
 cd path/to/your/project
 dotnet build
 dotnet run
